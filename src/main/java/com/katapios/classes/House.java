@@ -3,18 +3,35 @@ package com.katapios.classes;
 import com.katapios.interfaces.Door;
 import com.katapios.interfaces.Material;
 import com.katapios.interfaces.Window;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Value;
+import org.springframework.stereotype.Component;
 
+import javax.inject.Inject;
+import javax.inject.Named;
+import javax.inject.Qualifier;
 import java.util.Map;
 
+@Component
 public class House {
 
     private Window window;
+    @Value("3") // можно указывать SpEL !!
     private int height;
+
+    //@Autowired(required=false)
+    //@Autowired
+    //@WoodQualifier
+    //@Qualifier("logs")
+    @Inject // javax.inject
+    @Named("woodBean") // javax.inject
+    //@Named("brickBean") // javax.inject
     private Material wall;
 
     //private Collection<Door> doors;
     private Map<String, Door> doors;
 
+    @Autowired
     public House(Window window) {
         this.window = window;
     }
