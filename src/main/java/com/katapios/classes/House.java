@@ -3,6 +3,8 @@ package com.katapios.classes;
 import com.katapios.interfaces.Door;
 import com.katapios.interfaces.Material;
 import com.katapios.interfaces.Window;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Component;
 
 import java.util.Map;
 
@@ -10,10 +12,13 @@ public class House {
 
     private Window window;
     private int height;
+
+    @Autowired
     private Material wall;
 
     //private Collection<Door> doors;
     private Map<String, Door> doors;
+
 
     public House(Window window) {
         this.window = window;
