@@ -1,8 +1,7 @@
 package com.katapios;
 
-import com.katapios.classes.House;
-import com.katapios.classes.additional.City;
-import com.katapios.classes.objectTypes.MainWindow;
+import com.katapios.DAO.Course;
+import com.katapios.DAO.CourseDAO;
 import org.springframework.context.support.ClassPathXmlApplicationContext;
 
 public class App
@@ -12,21 +11,13 @@ public class App
         ClassPathXmlApplicationContext context =
                 new ClassPathXmlApplicationContext("applicationContext.xml");
 
-        House house = context.getBean("houseBean", House.class);
-        City city = context.getBean("test", City.class);
+        CourseDAO courseDAO = context.getBean(CourseDAO.class);
 
-//        System.out.println(city.getCity());
-//        System.out.println(city.getName());
+        System.out.println(courseDAO.findById(1).getTitle());
 
-        house.bildTheWall();
-        house.installTheDoors();
-        house.openWindow();
-        System.out.printf("House height : %d\n", house.getHeight());
-
-        MainWindow window = context.getBean(MainWindow.class);
-        window.showMainWindow();
+        for (Course c : courseDAO.findAll())
+            System.out.println(c);
 
         context.close();
-
     }
 }
