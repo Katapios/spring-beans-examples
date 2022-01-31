@@ -11,7 +11,7 @@ public class App
         ClassPathXmlApplicationContext context =
                 new ClassPathXmlApplicationContext("applicationContext.xml");
 
-        CourseDAO courseDao = context.getBean(CourseDAO.class);
+        CourseDAO courseDao = context.getBean("jpaCourseService",CourseDAO.class);
 
 
 //		Course spring = new Course();
