@@ -11,12 +11,31 @@ public class App
         ClassPathXmlApplicationContext context =
                 new ClassPathXmlApplicationContext("applicationContext.xml");
 
-        CourseDAO courseDAO = context.getBean(CourseDAO.class);
+        CourseDAO courseDao = context.getBean(CourseDAO.class);
 
-        System.out.println(courseDAO.findById(1).getTitle());
 
-        for (Course c : courseDAO.findAll())
-            System.out.println(c);
+//		Course spring = new Course();
+//		spring.setTitle("Spring");
+//		spring.setLength(40);
+//		spring.setDescription("Spring framework");
+//		courseDao.insert(spring);
+
+//        Course foundedCourse = courseDao.findById(3);
+//        foundedCourse.setTitle("New Course");
+//        foundedCourse.setLength(10);
+//        foundedCourse.setDescription("New framework");
+//        courseDao.update(foundedCourse);
+
+        //courseDao.delete(4);
+
+
+        for(Course c : courseDao.findAll())
+        	System.out.println(c);
+
+//        System.out.println(courseDao.findById(2));
+//
+//        for(Course c : courseDao.findByTitle("Java course"))
+//            System.out.println(c);
 
         context.close();
     }
