@@ -1,16 +1,23 @@
 package com.katapios.DAO;
 
-import static javax.persistence.GenerationType.IDENTITY;
-
-import javax.persistence.*;
 import java.io.Serializable;
+
+import static javax.persistence.GenerationType.IDENTITY;
+import javax.persistence.Entity;
+import javax.persistence.Table;
+import javax.persistence.Id;
+import javax.persistence.NamedQueries;
+import javax.persistence.NamedQuery;
+import javax.persistence.GeneratedValue;
+import javax.persistence.Column;
+
+
+@NamedQueries({
+        @NamedQuery(name="Course.findAll", 	query="select с from Course с")
+})
 
 @Entity
 @Table(name="courses")
-//you can use named queries
-@NamedQueries({
-        @NamedQuery(name="Courses.findAll", query="select c from Course c")
-})
 public class Course implements Serializable {
     private int id;
     private String title;
@@ -48,20 +55,10 @@ public class Course implements Serializable {
         this.description = description;
     }
 
-//    @Override
-//    public String toString() {
-//        return String.format("%-3d %-50s %4d",
-//                getId(), getTitle(), getLength());
-//    }
-
     @Override
     public String toString() {
-        return "Course{" +
-                "id=" + id +
-                ", title='" + title + '\'' +
-                ", length=" + length +
-                ", description='" + description + '\'' +
-                '}';
+        return String.format("%-3d %-50s %4d",
+                getId(), getTitle(), getLength());
     }
 
 }
