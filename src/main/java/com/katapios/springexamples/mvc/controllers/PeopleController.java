@@ -5,8 +5,10 @@ import com.katapios.springexamples.mvc.models.Person;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.util.MultiValueMap;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
+
 
 import javax.validation.Valid;
 
@@ -66,9 +68,11 @@ public class PeopleController {
         return "redirect:/people";
     }
 
+
     @DeleteMapping("/{id}")
-    public String delete(@PathVariable("id") int id){
+    public String delete(@PathVariable("id") int id) {
         personDAO.delete(id);
         return "redirect:/people";
     }
+
 }

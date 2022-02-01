@@ -22,6 +22,7 @@ public class MySpringMvcDispatcherServletInitializer extends AbstractAnnotationC
         return new String[] {"/"};
     }
 
+//    you need it to use put\delete\patch and other methods
     @Override
     public void onStartup(ServletContext aServletContext) throws ServletException {
         super.onStartup(aServletContext);
