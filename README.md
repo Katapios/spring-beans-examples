@@ -26,6 +26,7 @@
 | :white_check_mark:  **jpa-crud-repository** | Пример обращений к БД на основе crud-repository |
 | :white_check_mark:  **annotations** | Использование БД на основе аннотаций |
 | :white_check_mark:  **dbjdbc** | Использование БД на основе JDBC |
+| :white_check_mark:  **mvc-with-interface** | DAO jdbcTemplate + автосборка и запуск без IDE :warning:|
 
 
 ### Как запустить?
