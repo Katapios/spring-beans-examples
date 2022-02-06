@@ -1,0 +1,65 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <title></title>
+    <script src="angular.min.js"></script>
+    <style>
+        th {
+            cursor: pointer;
+        }
+    </style>
+</head>
+<body>
+    <h1>Курсы</h1>
+    <div ng-app="myApp" ng-controller="courseController">
+        <p><input type="search" ng-model="userSearch"></p>
+        <table border="1">
+            <tr>
+                <th ng-click="orderByMe('title')">Название</th>
+                <th ng-click="orderByMe('length')">Часы</th>
+                <th ng-click="orderByMe('description')">Описание</th>
+            </tr>
+            <tr ng-repeat="c in courses | filter:{title:userSearch} |orderBy:myOrderBy  | limitTo:pageSize:currentPage*pageSize">
+                <td>{{c.title}}</td>
+                <td>{{c.length}}</td>
+                <td>{{c.description}}</td>
+            </tr>
+        </table>
+        <button ng-repeat="i in getNumberAsArray(numberOfPages(courses | filter:{title:userSearch})) track by $index"
+                ng-click="setCurrentPage($index)">
+            {{$index+1}}
+        </button>
+
+    </div>
+    <script>
+        angular.module('myApp', []).
+            controller('courseController', function ($scope, $http) {
+                $http.get('../api/course').
+                    then(function (response) {
+                        $scope.courses =
+                            angular.fromJson(response.data);
+
+                        $scope.pageSize = 10;
+                        $scope.currentPage = 0;
+                        $scope.setCurrentPage = function (currentPage) {
+                            $scope.currentPage = currentPage;
+                        }
+                        $scope.numberOfPages = function (cs) {
+                            return Math.ceil(cs.length / $scope.pageSize);
+                        }
+                        $scope.getNumberAsArray = function (num) {
+                            return new Array(num)
+                        }
+
+                    });
+
+                $scope.myOrderBy = 'title';
+                $scope.orderByMe = function (x) {
+                    $scope.myOrderBy = x
+                }
+            });
+    </script>
+
+</body>
+</html>
